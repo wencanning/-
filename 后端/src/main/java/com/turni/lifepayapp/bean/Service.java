@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class City {
+public class Service {
     private Integer id;
     private String name;
-    private char letter;
+    private String img_url;
 }

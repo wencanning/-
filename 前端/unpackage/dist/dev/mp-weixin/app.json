@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/index/index-003",
+    "pages/city_choice/city",
+    "pages/index/bill",
+    "pages/detail/pay_choice",
+    "pages/detail/pay"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#868e96",
+    "selectedColor": "#212529",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/static/tabBar/首页.png",
+        "selectedIconPath": "/static/tabBar/首页s.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/index/bill",
+        "iconPath": "/static/tabBar/账单.png",
+        "selectedIconPath": "/static/tabBar/账单s.png",
+        "text": "账单"
+      },
+      {
+        "pagePath": "pages/index/index-003",
+        "iconPath": "/static/tabBar/个人.png",
+        "selectedIconPath": "/static/tabBar/个人s.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

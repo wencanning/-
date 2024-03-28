@@ -1,0 +1,1 @@
+<input placeholder="请输入手机号码" value="{{a}}" bindinput="{{b}}"></input><input placeholder="请输入密码" password="{{true}}" value="{{c}}" bindinput="{{d}}"></input><button>登录</button><text>{{e}}</text><text>{{f}}</text>

@@ -1,0 +1,51 @@
+
+text {
+		display: block;
+}
+page {
+		background-color: #f1f3f5;
+}
+.city-ch image {
+		height: 60rpx;
+		width: 60rpx;
+}
+.city-ch {
+		display:  flex;
+		align-items: center;
+}
+.city-ch {
+		font-size: 32rpx;
+}
+.index-nav {
+		margin: 20px 10px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+}
+.font-bold {
+		font-weight: bold;
+}
+.pay-item {
+		margin: 20px 10px;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: 200rpx 200rpx 200rpx;
+		grid-column-gap: 5rpx;
+		grid-row-gap: 5rpx;
+		box-shadow: 0 0 32rpx rbga(0, 0, 0, 0.1);
+}
+.item-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		padding: 35rpx 50rpx;
+		
+		font-size: 32rpx;
+		
+		background-color: #fff;
+}
+.item-card image {
+		width: 65rpx;
+		height: 65rpx;
+}

@@ -1,0 +1,1 @@
+<view class="container"><view class="nav"><text>缴费项目</text><text>城市</text></view><view class="company"><view wx:for="{{a}}" wx:for-item="item" wx:key="b" class="com-item" bindtap="{{item.c}}"><text>{{item.a}}</text></view></view></view>

@@ -1,0 +1,73 @@
+{
+  "pages": [
+    //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "生活缴费",
+        "navigationBarTextStyle": "black"
+      }
+    },
+    {
+      "path": "pages/index/index-003",
+      "style": {
+        "navigationBarTitleText": "uni-app"
+      }
+    },
+    {
+      "path": "pages/city_choice/city",
+      "style": {
+        "navigationBarTitleText": "切换城市"
+      }
+    },
+    {
+      "path": "pages/index/bill",
+      "style": {
+        "navigationBarTitleText": "账单"
+      }
+    },
+    {
+      "path": "pages/detail/pay_choice",
+      "style": {
+        "navigationBarTitleText": "选择缴费项目"
+      }
+    },
+    {
+      "path": "pages/detail/pay",
+      "style": {
+        "navigationBarTitleText": "新增缴费"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "uniIdRouter": {},
+  "tabBar": {
+    "color": "#868e96",
+    "selectedColor": "#212529",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/static/tabBar/首页.png",
+        "selectedIconPath": "/static/tabBar/首页s.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/index/bill",
+        "iconPath": "/static/tabBar/账单.png",
+        "selectedIconPath": "/static/tabBar/账单s.png",
+        "text": "账单"
+      },
+      {
+        "pagePath": "pages/index/index-003",
+        "iconPath": "/static/tabBar/个人.png",
+        "selectedIconPath": "/static/tabBar/个人s.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+
+.export {
+		padding: 16rpx 26rpx;
+		background-color: #dee2e6;
+		border-radius: 40rpx;
+		font-size: 32rpx;
+		letter-spacing: 2rpx;
+}
+.tobar {
+		background-color: #f1f3f5;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 34rpx 24rpx;
+}
+.tobar-1 {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		
+		font-size: 32rpx;
+		color: #8a8a8a;
+}
+.tobar image {
+		height: 60rpx;
+		width: 60rpx;
+}
+.date {
+		font-weight: 600;
+		font-size: 40rpx;
+}
+.pay {
+		font-weight: 300;
+		font-size: 32rpx;
+}
+.bill {
+		display: flex;
+		flex-direction: column;
+}
+.item-detil {
+		display: flex;
+		flex-direction: column;
+		line-height: 56rpx;
+}
+.bill-item {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		
+		padding: 10rpx 30rpx;
+		border-bottom: 4rpx solid #f1f3f5;
+}
+.item-name {
+		font-size: 40rpx;
+		letter-spacing: 3rpx;
+		font-weight: 500;
+		margin-bottom: 10rpx;
+}
+.item-date {
+		font-size: 32rpx;
+		font-weight: 300;
+}
+.item-money {
+		font-weight: bold;
+		font-size: 40rpx;
+}

@@ -1,0 +1,1 @@
+<view class="container"><view class="nav"><view class="nav-1"><image src="/static/payitem/火.png"></image><text>燃气费</text></view><text class="nav-city">武汉市</text></view><view class="pay-card"><view class="card-item"><text>缴费单位</text><text>武汉燃气有限公司</text></view><view class="card-item"><text>缴费户号</text><text>12345678</text></view></view></view>
