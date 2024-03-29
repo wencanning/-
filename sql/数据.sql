@@ -12,7 +12,7 @@ values
     (3, "燃气费", "/static/payitem/火.png"),
     (4, "固话费", "/static/payitem/电话.png"),
     (5, "宽带费", "/static/payitem/宽带.png"),
-    (6, "有线电视", "/static/payitem/有线电视.png"),
+    (6, "有线电视", "/static/payitem/电视.png"),
     (7, "交通违章", "/static/payitem/汽车.png"),
     (8, "供暖费", "/static/payitem/供暖.png");
     

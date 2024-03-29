@@ -8,10 +8,10 @@
 			</view>
 		</view>
 		<view class="pay-item">
-			<view class="item-card" v-for="(item, index) in data" :key="index"
+			<view class="item-card" v-for="(item, index) in serv" :key="index"
 			@click="toPayChoice()"
 			>
-				<image :src="item.url" mode="aspectFit"></image>
+				<image :src="item.img_url" mode="aspectFit"></image>
 				<text>{{item.name}}</text>
 			</view>
 		</view>
@@ -21,26 +21,21 @@
 
 <script setup>
 	import {ref} from 'vue';
-	const cityName = ref("武汉");
-	const data = ref([
-		{
-			url: "/static/payitem/电费.png",
-			name: "电费"
-		},
-		{
-			url: "/static/payitem/水.png",
-			name: "水费"
-		},
-		{
-			url: "/static/payitem/火.png",
-			name: "燃气费"
-		},
-		{
-			url: "/static/payitem/电话.png",
-			name: "固话费"
-		}
-	])
+	import {requestApi} from '@/api/request.js';
+	import {onShow} from '@dcloudio/uni-app';
 	
+	const cityName = ref("武汉");
+	const serv = ref();
+	//加载页面时获取数据
+	onShow(()=>{
+		getCityServ(1);
+	})
+	
+	//获取当前城市的服务
+	async function getCityServ(c_id) {
+		serv.value = await requestApi('/serv/' + c_id);
+	} 
+
 	// 与城市切换页面通信
 	function changeCity() {
 		uni.navigateTo({
@@ -53,11 +48,13 @@
 			}
 		})	
 	}
+	// 跳转到公司选择页面
 	function toPayChoice() {
 		uni.navigateTo({
 			url:"/pages/detail/pay_choice",
 		})
 	}
+	
 </script>
 
 <style>
