@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class CityController {
     @Autowired
     private CityService cityService;
+
     @GetMapping("/")
     public String getCity() {
         return "for test.";
     }
+
     @GetMapping("/{id}")
     public City getUser(@PathVariable("id") Integer id ) {
         System.out.println(id);
