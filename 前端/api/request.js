@@ -1,4 +1,5 @@
-const baseUrl = 'http://localhost:8080'
+import {resolve} from "node:path/posix";
+const baseUrl = 'http://localhost:8080';
 
 //发送请求
 
@@ -13,6 +14,7 @@ function requestApi(url,data={},method='GET') {
 			},
 			fail:(err)=>{
 				console.log(err);
+				resolve("fail");
 			}
 		})
 	})

@@ -1,0 +1,26 @@
+
+.login-btn {
+		margin-top: 150rpx;
+		color: white;
+		background-color: #00B0FF;
+		width: 100%;
+		border-radius: 60rpx;
+}
+.usr-login {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		
+		margin-top: 100rpx;
+		padding: 0 50rpx;
+		gap: 20rpx;
+}
+.usr-img {
+		height: 75px;
+}
+.usr-input {
+		padding-left: 30rpx;
+		width: 100%;
+		display: flex;
+		justify-content: space-around;
+}

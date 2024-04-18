@@ -11,7 +11,7 @@ function requestApi(url, data = {}, method = "GET") {
         resolev(res.data);
       },
       fail: (err) => {
-        console.log(err);
+        resolev("fail");
       }
     });
   });

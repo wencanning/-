@@ -2,12 +2,25 @@
   "pages": [
     //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
     {
+      "path": "pages/login/index",
+      "style": {
+        "navigationBarTitleText": "请登录",
+		"navigationBarBackgroundColor": "#fff"
+      }
+    },
+	{
       "path": "pages/index/index",
       "style": {
         "navigationBarTitleText": "生活缴费",
         "navigationBarTextStyle": "black"
       }
-    },
+    },	
+	{
+		"path": "pages/login/login",
+		"style": {
+			"navigationBarTitleText": "登录"
+		}
+	},	
     {
       "path": "pages/index/index-003",
       "style": {
