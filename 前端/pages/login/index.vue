@@ -1,6 +1,6 @@
 <template>
 	<view class="usr-login">
-		<image mode="aspectFit" class="usr-img" src="/static/icon/默认头像.png"></image>
+		<image mode="aspectFit" class="usr-img" src="/static/icon/头像_男孩.png"></image>
 		<text>生活缴费小程序</text>
 		<button class="login-btn"  @click="toLogin">手机号登录</button>
 		<!-- <view class="usr-phone usr-input">

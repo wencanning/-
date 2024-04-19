@@ -39,6 +39,7 @@
 		</button>
 		<button
 		 class="btn-l btn-login"
+		 @click="btnLogin"
 		 >
 			登录
 		</button>
@@ -57,10 +58,27 @@
 	function onInputOfMess(e) {
 		messg_num.value = e.detail;
 	}
-	async function btnSend(c_id) {
+	// async function btnSend(c_id) {
 		
-		messg_rel.value = await requestApi('/login/phone', );
+	// 	messg_rel.value = await requestApi('/login/phone', );
 		
+	// }
+		
+	function btnLogin() {
+		wx.login({
+			success:async(res)=> {
+				if(res.code) {
+					const userData = await requestApi('/login', 	
+					{
+						phone: phone_num,
+						messg: messg_num
+					},
+					'POST'
+					)
+					
+				}
+			}
+		})
 	}
 </script>
 

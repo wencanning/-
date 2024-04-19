@@ -1,4 +1,4 @@
-import {resolve} from "node:path/posix";
+// import {resolve} from "node:path/posix";
 const baseUrl = 'http://localhost:8080';
 
 //发送请求

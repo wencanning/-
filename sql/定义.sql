@@ -41,4 +41,14 @@ create table `cs`(
     primary key(`c_id`, `s_id`),
     foreign key(`c_id`) references city(`id`),
     foreign key(`s_id`) references service(`id`)
-)
+);
+
+-- 创建用户表
+drop table if exists user;
+create table `user`(
+	id int auto_increment,
+    phonenumber varchar(100) not null,
+    username varchar(100) not null,
+    img_url varchar(100) not null,
+    primary key(`id`)
+);

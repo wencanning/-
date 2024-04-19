@@ -27,3 +27,8 @@ values
 	(1, 6),
     (1, 7);
     
+-- 插入到用户表
+insert  ignore into user(phonenumber, username, img_url)
+values 
+	("15272304780", "wcn", "/static/icon/头像_男孩.png");
+    

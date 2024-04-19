@@ -1,1 +1,1 @@
-<view class="usr-login"><image mode="aspectFit" class="usr-img" src="/static/icon/默认头像.png"></image><text>生活缴费小程序</text><button class="login-btn" bindtap="{{a}}">手机号登录</button></view>
+<view class="usr-login"><image mode="aspectFit" class="usr-img" src="/static/icon/头像_男孩.png"></image><text>生活缴费小程序</text><button class="login-btn" bindtap="{{a}}">手机号登录</button></view>
