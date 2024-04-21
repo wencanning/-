@@ -7,10 +7,15 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface UserMapper {
+    @Select("select * from user")
+    List<User> getAll();
     @Insert("insert into user(phonenumber, username, img_url) values(#{phone},#{name}, #{url})")
     void insertWithoutId(@Param("phone")String phon, @Param("name") String username, @Param("url")String img_url);
     @Select("select * from user where phonenumber=#{phone}")
     User getUserByPhone(@Param("phone")String phone);
+
 }

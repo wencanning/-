@@ -19,6 +19,7 @@ public class ServController {
     //tested!
     @GetMapping("/{cid}")
     public List<Service>getServByCid(@PathVariable("cid") Integer cid) {
+        System.out.println(cid);
         return servService.getServByCid(cid);
     }
 

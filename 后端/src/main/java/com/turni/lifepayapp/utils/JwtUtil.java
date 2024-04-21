@@ -5,6 +5,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 public class JwtUtil {
@@ -35,5 +36,10 @@ public class JwtUtil {
                 .sign(algorithm);
     }
 
-    public static String getUserPhoneByToken()
+    public static String getUserPhoneByToken(HttpServletRequest request) {
+        String token = request.getHeader("token");
+        DecodedJWT jwt = JWT.decode(token);
+        return jwt.getClaim("username")
+                .asString();
+    }
 }

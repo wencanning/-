@@ -49,33 +49,27 @@
 <script setup>
 	import {ref} from 'vue';
 	import {requestApi} from '@/api/request.js';
-	const phone_num = ref();
-	const messg_num = ref();
+	let phone_num = "";
+	let messg_num = "";
 	const messg_rel = ref();
 	function onInputOfPhone(e) {
-		phone_num.value = e.detail;
+		phone_num = e.detail;
 	}
 	function onInputOfMess(e) {
-		messg_num.value = e.detail;
-	}
-	// async function btnSend(c_id) {
-		
-	// 	messg_rel.value = await requestApi('/login/phone', );
-		
-	// }
-		
+		messg_num = e.detail;
+	}	
 	function btnLogin() {
 		wx.login({
 			success:async(res)=> {
 				if(res.code) {
 					const userData = await requestApi('/login', 	
 					{
-						phone: phone_num,
-						messg: messg_num
+						phone: phone_num.value,
+						message: messg_num.value
 					},
 					'POST'
 					)
-					
+					console.log(userData)
 				}
 			}
 		})

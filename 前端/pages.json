@@ -5,7 +5,7 @@
       "path": "pages/login/index",
       "style": {
         "navigationBarTitleText": "请登录",
-		"navigationBarBackgroundColor": "#fff"
+    	"navigationBarBackgroundColor": "#fff"
       }
     },
 	{
@@ -14,7 +14,7 @@
         "navigationBarTitleText": "生活缴费",
         "navigationBarTextStyle": "black"
       }
-    },	
+    },
 	{
 		"path": "pages/login/login",
 		"style": {

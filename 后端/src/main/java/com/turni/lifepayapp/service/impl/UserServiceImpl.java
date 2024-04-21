@@ -6,6 +6,8 @@ import com.turni.lifepayapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -26,6 +28,16 @@ public class UserServiceImpl implements UserService {
     public User getUserByPhone(String phone) {
         try {
             return userMapper.getUserByPhone(phone);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<User> getAll() {
+        try {
+            return userMapper.getAll();
         }catch (Exception e) {
             e.printStackTrace();
             return null;
