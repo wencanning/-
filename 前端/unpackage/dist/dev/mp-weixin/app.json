@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/login/index",
     "pages/index/index",
+    "pages/login/index",
     "pages/login/login",
     "pages/index/index-003",
     "pages/city_choice/city",

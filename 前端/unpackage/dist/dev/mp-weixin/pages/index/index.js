@@ -5,13 +5,13 @@ const _sfc_main = {
   __name: "index",
   setup(__props) {
     const cityName = common_vendor.ref("武汉");
-    const serv = common_vendor.ref();
-    common_vendor.onShow(() => {
-      getCityServ(1);
+    const serv = common_vendor.ref([]);
+    common_vendor.onShow(async () => {
+      console.log("开始请求城市的服务");
+      const servData = await api_request.requestApi("/serv/1");
+      serv.value = servData.serv;
+      console.log("已请求城市服务数据", serv.value);
     });
-    async function getCityServ(c_id) {
-      serv.value = await api_request.requestApi("/serv/" + c_id);
-    }
     function changeCity() {
       common_vendor.index.navigateTo({
         url: "/pages/city_choice/city",

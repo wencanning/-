@@ -59,18 +59,22 @@
 		messg_num = e.detail;
 	}	
 	function btnLogin() {
+		wx.showLoading({title:'登录中'})
 		wx.login({
 			success:async(res)=> {
-				if(res.code) {
-					const userData = await requestApi('/login', 	
-					{
-						phone: phone_num.value,
-						message: messg_num.value
-					},
-					'POST'
-					)
-					console.log(userData)
-				}
+				const userData = await requestApi('/login', 	
+				{
+					phone: phone_num.value,
+					message: messg_num.value
+				},
+				'POST'
+				);
+				console.log(userData);
+				wx.setStorageSync('userInfo', userData.data);
+				wx.hideLoading();
+				wx.switchTab({
+				  url: '/pages/index/index', // 替换成你的 tabBar 页面路径
+				})
 			}
 		})
 	}

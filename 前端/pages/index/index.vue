@@ -25,15 +25,20 @@
 	import {onShow} from '@dcloudio/uni-app';
 	
 	const cityName = ref("武汉");
-	const serv = ref();
+	const serv = ref([]);
 	//加载页面时获取数据
-	onShow(()=>{
-		getCityServ(1);
+	onShow(async()=>{
+		console.log('开始请求城市的服务');
+		const servData = await requestApi('/serv/1');
+		serv.value = servData.serv;
+		console.log('已请求城市服务数据',serv.value);
+		// getCityServ(1);
 	})
 	
 	//获取当前城市的服务
 	async function getCityServ(c_id) {
 		serv.value = await requestApi('/serv/' + c_id);
+		console.log(serv);
 	} 
 
 	// 与城市切换页面通信

@@ -47,15 +47,15 @@ public class LoginController {
                 if(username == null)
                         return HTTPrespose.errorMessage(500, "服务器为用户创建新用户失败");
                 userService.insertWithoutId(phone,username,img_url);
+                user = userService.getUserByPhone(phone);
             }
             String token = JwtUtil.sign(phone, message);
             if(token == null) {
                 return HTTPrespose.errorMessage(500, "服务器生成token错误");
             }
-            Map<String, Object> map = new HashMap<>();
-            map.put("statusCode", "200");
-            map.put("message", "登录成功");
+            Map<String, Object> map = HTTPrespose.successMessage("登录成功");
             map.put("token", token);
+            map.put("user", user);
             return map;
         }catch (Exception e) {
             e.printStackTrace();

@@ -8,7 +8,13 @@ public class HTTPrespose {
         Map<String, Object> map = new HashMap<>();
         map.put("statusCode", statusCode);
         map.put("message", message);
+        return map;
+    }
 
+    public static Map<String, Object> successMessage(String message) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("statusCode", 200);
+        map.put("message", message);
         return map;
     }
 }

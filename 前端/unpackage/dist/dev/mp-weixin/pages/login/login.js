@@ -14,19 +14,24 @@ const _sfc_main = {
       messg_num = e.detail;
     }
     function btnLogin() {
+      common_vendor.wx$1.showLoading({ title: "登录中" });
       common_vendor.wx$1.login({
         success: async (res) => {
-          if (res.code) {
-            const userData = await api_request.requestApi(
-              "/login",
-              {
-                phone: phone_num.value,
-                message: messg_num.value
-              },
-              "POST"
-            );
-            console.log(userData);
-          }
+          const userData = await api_request.requestApi(
+            "/login",
+            {
+              phone: phone_num.value,
+              message: messg_num.value
+            },
+            "POST"
+          );
+          console.log(userData);
+          common_vendor.wx$1.setStorageSync("userInfo", userData.data);
+          common_vendor.wx$1.hideLoading();
+          common_vendor.wx$1.switchTab({
+            url: "/pages/index/index"
+            // 替换成你的 tabBar 页面路径
+          });
         }
       });
     }
