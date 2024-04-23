@@ -1,6 +1,15 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
 const baseUrl = "http://localhost:8080";
+function getToken() {
+  const userInfo = common_vendor.wx$1.getStorageSync("userInfo");
+  if (userInfo) {
+    console.log("从缓存中获取token", userInfo.token);
+    return userInfo.token;
+  } else {
+    return "[object Undefined]";
+  }
+}
 function requestApi(url, data = {}, method = "GET") {
   console.log("网络请求的参数为:", data);
   return new Promise((resolev, reject) => {
@@ -9,11 +18,13 @@ function requestApi(url, data = {}, method = "GET") {
       method,
       data,
       header: {
-        "content-type": "application/json"
+        "content-type": "application/json",
+        "token": getToken()
       },
       success: (res) => {
         console.log("网络请求的结果为", res);
         const status = Number(res.data.statusCode);
+        console.log("status=", status);
         switch (status) {
           case 200:
             resolev(res.data);
@@ -27,6 +38,8 @@ function requestApi(url, data = {}, method = "GET") {
             break;
           case 401:
             showToast("请先登录");
+            console.error("无访问权限");
+            console.error(res.data.message);
             common_vendor.index.navigateTo({ url: "/pages/login/index" });
             common_vendor.wx$1.hideLoading();
             break;

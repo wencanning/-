@@ -26,7 +26,7 @@ const _sfc_main = {
             "POST"
           );
           console.log(userData);
-          common_vendor.wx$1.setStorageSync("userInfo", userData.data);
+          common_vendor.wx$1.setStorageSync("userInfo", userData);
           common_vendor.wx$1.hideLoading();
           common_vendor.wx$1.switchTab({
             url: "/pages/index/index"

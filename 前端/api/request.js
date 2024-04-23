@@ -1,5 +1,16 @@
 const baseUrl = 'http://localhost:8080';
 
+//获取token
+function getToken() {
+	const userInfo = wx.getStorageSync('userInfo');
+	if(userInfo) {
+		console.log('从缓存中获取token', userInfo.token);
+		return userInfo.token;
+	}else {
+		return "[object Undefined]"
+	}
+}
+
 //发送请求
 function requestApi(url,data={},method='GET') {
 	console.log('网络请求的参数为:', data);
@@ -9,11 +20,13 @@ function requestApi(url,data={},method='GET') {
 			method:method,
 			data:data,
 			header:{
-				'content-type': 'application/json' 
+				'content-type': 'application/json' ,
+				'token': getToken()
 			},
 			success:(res)=>{
 				console.log('网络请求的结果为', res);
 				const status = Number(res.data.statusCode);
+				console.log('status=', status);
 				switch(status) {
 					case 200:
 					resolev(res.data);
@@ -27,6 +40,8 @@ function requestApi(url,data={},method='GET') {
 					break;
 					case 401:
 					showToast('请先登录');
+					console.error('无访问权限');
+					console.error(res.data.message);
 					uni.navigateTo({url:'/pages/login/index'});
 					wx.hideLoading();
 					break;

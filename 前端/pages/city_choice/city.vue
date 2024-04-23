@@ -8,37 +8,55 @@
 </template>
 
 <script setup>
-	import {onLoad}	from '@dcloudio/uni-app';
+	import {onLoad, onShow}	from '@dcloudio/uni-app';
 	import {ref, getCurrentInstance} from 'vue';
-	const citylist = ([{
-							"letter": "A",
-							"data": [
-								"阿克苏机场",
-								"阿拉山口机场",
-								"阿勒泰机场",
-								"阿里昆莎机场",
-								"安庆天柱山机场",
-								"澳门国际机场"
-							]
-						}, {
-							"letter": "B",
-							"data": [
-								"保山机场",
-								"包头机场",
-								"北海福成机场",
-								"北京南苑机场",
-								"北京首都国际机场"
-							]
-						}]);
+	import {requestApi} from '@/api/request.js';
+	const citylist = ref([]);
+	const cityst = ref([]);
 	let eventChannel;
-	
 	onLoad((option)=>{
 		eventChannel = getCurrentInstance().proxy.getOpenerEventChannel();
-		console.log(eventChannel);
+		console.log("eventChannel",eventChannel);
 	});			
-	
+	onShow(async()=>{
+		console.log('请求城市数据');
+		const cityData = await requestApi('/city');
+		cityst.value = cityData.citylist;
+		console.log('请求的城市数据',cityst);
+		initCityList();
+	});
+	function initCityList() {
+		let list = [];
+		let categorizedData = {};
+		cityst.value.forEach(item => {
+			let firstletter = item.letter;
+			if(!categorizedData[firstletter]) {
+				categorizedData[firstletter] = 1;
+				list.push({letter: firstletter, data: []});
+			}
+			list.forEach(item2 => {
+				if(item2.letter == firstletter) {
+					item2.data.push(item.name);
+				}
+			})
+		});
+		citylist.value = list;
+		console.log(citylist);
+	}
+	function getCityId(name) {
+		let id;
+		cityst.value.forEach(item => {
+			if(name == item.name) {
+				id = item.id;
+			}
+		})
+		console.log("id", id);
+		return id;
+	}
 	function bindClick(obj) {
-		eventChannel.emit('acceptDataFromOpenedPage', { name: obj.item.name } );
+		let cname = obj.item.name;
+		let cid = getCityId(cname);
+		eventChannel.emit('acceptDataFromOpenedPage', {name: cname,city_id: cid});
 		uni.navigateBack();
 	}
 

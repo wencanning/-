@@ -6,17 +6,30 @@ import com.turni.lifepayapp.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CityServiceImpl implements CityService {
     @Autowired
     private CityMapper cityMapper;
 
-
     @Override
     public City getCityById(Integer id) {
-        if(cityMapper == null) {
-            System.out.println("is null");
+        try {
+            return cityMapper.getById(id);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        return cityMapper.getById(id);
+    }
+
+    @Override
+    public List<City> getCity() {
+        try {
+            return cityMapper.getCity();
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

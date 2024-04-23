@@ -43,4 +43,16 @@ public class UserServiceImpl implements UserService {
             return null;
         }
     }
+
+    @Override
+    public String getPhoneByUsername(String username) {
+        try {
+            return userMapper.getPhoneByUsername(username);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
 }

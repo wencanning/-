@@ -8,9 +8,17 @@
 		
 	</view>
 	<view class="tobar">
-		<uni-datetime-picker type="date" class="date" v-model="single">
-			<text>{{single}}</text>
-		</uni-datetime-picker>
+		<picker 
+			:start="startDate" 
+			:end="endDate" 
+			:value="currentDate"  
+			class="date" 
+			mode="date" 
+			fields="month"
+			@change="dateChange"
+			>
+			{{currentDate}}
+			</picker>
 		<view class="pay">支出 ¥{{money}}</view>
 	</view>
 	<view class="bill">
@@ -28,10 +36,9 @@
 
 <script setup>
 	import {ref} from 'vue';
-	const year = ref(2024);
-	const month = ref(3);
-	const money = ref(0);
-	const single = ref("2024-3-1");
+	const startDate = ref("2023-1");
+	const endDate = ref("2050-1");
+	const currentDate = ref("2024-04");
 	const data = ref([
 		{
 			name: "爱情麻辣烫",
@@ -54,6 +61,9 @@
 			money: "24.00",
 		}
 	])
+	function dateChange(event) {
+		currentDate.value = event.detail.value;
+	}
 </script>
 
 <style>

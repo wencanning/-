@@ -70,7 +70,7 @@
 				'POST'
 				);
 				console.log(userData);
-				wx.setStorageSync('userInfo', userData.data);
+				wx.setStorageSync('userInfo', userData);
 				wx.hideLoading();
 				wx.switchTab({
 				  url: '/pages/index/index', // 替换成你的 tabBar 页面路径

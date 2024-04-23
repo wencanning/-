@@ -4,7 +4,7 @@
 
 <script setup>
 	import {ref} from 'vue';
-	import {onLoad}	from '@dcloudio/uni-app'
+	import {onLoad}	from '@dcloudio/uni-app';
 	
 	const data = ref([
 		'第一张图',

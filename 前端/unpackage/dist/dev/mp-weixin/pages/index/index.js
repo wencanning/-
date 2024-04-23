@@ -5,6 +5,7 @@ const _sfc_main = {
   __name: "index",
   setup(__props) {
     const cityName = common_vendor.ref("武汉");
+    const cityId = common_vendor.ref(1);
     const serv = common_vendor.ref([]);
     common_vendor.onShow(async () => {
       console.log("开始请求城市的服务");
@@ -16,16 +17,22 @@ const _sfc_main = {
       common_vendor.index.navigateTo({
         url: "/pages/city_choice/city",
         events: {
-          acceptDataFromOpenedPage: function(data) {
-            console.log(data);
+          acceptDataFromOpenedPage: async function(data) {
+            console.log("data", data);
             cityName.value = data.name;
+            cityId.value = data.city_id;
+            console.log("开始请求城市的服务", cityId.value);
+            const servData = await api_request.requestApi("/serv/" + cityId.value);
+            serv.value = servData.serv;
+            console.log("已请求城市服务数据", serv.value);
           }
         }
       });
     }
-    function toPayChoice() {
+    function toPayChoice(servId) {
+      console.log(servId);
       common_vendor.index.navigateTo({
-        url: "/pages/detail/pay_choice"
+        url: "/pages/detail/pay_choice?servId=" + servId + "&cityId=" + cityId.value
       });
     }
     return (_ctx, _cache) => {
@@ -37,7 +44,7 @@ const _sfc_main = {
             a: item.img_url,
             b: common_vendor.t(item.name),
             c: index,
-            d: common_vendor.o(($event) => toPayChoice(), index)
+            d: common_vendor.o(($event) => toPayChoice(item.id), index)
           };
         })
       };

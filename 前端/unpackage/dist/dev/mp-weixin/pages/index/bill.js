@@ -1,20 +1,11 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-if (!Array) {
-  const _easycom_uni_datetime_picker2 = common_vendor.resolveComponent("uni-datetime-picker");
-  _easycom_uni_datetime_picker2();
-}
-const _easycom_uni_datetime_picker = () => "../../uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.js";
-if (!Math) {
-  _easycom_uni_datetime_picker();
-}
 const _sfc_main = {
   __name: "bill",
   setup(__props) {
-    common_vendor.ref(2024);
-    common_vendor.ref(3);
-    const money = common_vendor.ref(0);
-    const single = common_vendor.ref("2024-3-1");
+    const startDate = common_vendor.ref("2023-1");
+    const endDate = common_vendor.ref("2050-1");
+    const currentDate = common_vendor.ref("2024-04");
     const data = common_vendor.ref([
       {
         name: "爱情麻辣烫",
@@ -37,16 +28,18 @@ const _sfc_main = {
         money: "24.00"
       }
     ]);
+    function dateChange(event) {
+      currentDate.value = event.detail.value;
+    }
     return (_ctx, _cache) => {
       return {
-        a: common_vendor.t(single.value),
-        b: common_vendor.o(($event) => single.value = $event),
-        c: common_vendor.p({
-          type: "date",
-          modelValue: single.value
-        }),
-        d: common_vendor.t(money.value),
-        e: common_vendor.f(data.value, (item, index, i0) => {
+        a: common_vendor.t(currentDate.value),
+        b: startDate.value,
+        c: endDate.value,
+        d: currentDate.value,
+        e: common_vendor.o(dateChange),
+        f: common_vendor.t(_ctx.money),
+        g: common_vendor.f(data.value, (item, index, i0) => {
           return {
             a: common_vendor.t(item.name),
             b: common_vendor.t(item.date),

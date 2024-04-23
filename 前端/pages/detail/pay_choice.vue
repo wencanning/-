@@ -18,17 +18,21 @@
 
 <script setup>
 	import {ref} from 'vue';
-	const company = ref([
-		{
-			name: '武汉燃气有限公司'
-		},
-		{
-			name: '汉口燃气有限公司'
-		},
-		{
-			name: '武昌燃气有限公司'
-		}
-	])
+	import {requestApi} from '@/api/request.js';
+	import {onLoad, onShow}	from '@dcloudio/uni-app';
+	const company = ref([]);
+	const servId = ref(1);
+	const cityId = ref(1);
+	onLoad((option)=> {
+		console.log(option);
+		servId.value = Number(option.servId);
+		cityId.value = Number(option.cityId);
+	});
+	onShow(async()=>{
+		const data = await requestApi("/company",{s_id:servId.value,c_id:cityId.value});
+		company.value = data.company;
+		console.log(company.value);
+	});
 	function toPay() {
 		uni.navigateTo({
 			url: "/pages/detail/pay"

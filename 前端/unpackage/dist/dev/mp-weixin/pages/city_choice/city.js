@@ -1,5 +1,6 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const api_request = require("../../api/request.js");
 if (!Array) {
   const _easycom_uni_indexed_list2 = common_vendor.resolveComponent("uni-indexed-list");
   _easycom_uni_indexed_list2();
@@ -11,40 +12,59 @@ if (!Math) {
 const _sfc_main = {
   __name: "city",
   setup(__props) {
-    const citylist = [{
-      "letter": "A",
-      "data": [
-        "阿克苏机场",
-        "阿拉山口机场",
-        "阿勒泰机场",
-        "阿里昆莎机场",
-        "安庆天柱山机场",
-        "澳门国际机场"
-      ]
-    }, {
-      "letter": "B",
-      "data": [
-        "保山机场",
-        "包头机场",
-        "北海福成机场",
-        "北京南苑机场",
-        "北京首都国际机场"
-      ]
-    }];
+    const citylist = common_vendor.ref([]);
+    const cityst = common_vendor.ref([]);
     let eventChannel;
     common_vendor.onLoad((option) => {
       eventChannel = common_vendor.getCurrentInstance().proxy.getOpenerEventChannel();
-      console.log(eventChannel);
+      console.log("eventChannel", eventChannel);
     });
+    common_vendor.onShow(async () => {
+      console.log("请求城市数据");
+      const cityData = await api_request.requestApi("/city");
+      cityst.value = cityData.citylist;
+      console.log("请求的城市数据", cityst);
+      initCityList();
+    });
+    function initCityList() {
+      let list = [];
+      let categorizedData = {};
+      cityst.value.forEach((item) => {
+        let firstletter = item.letter;
+        if (!categorizedData[firstletter]) {
+          categorizedData[firstletter] = 1;
+          list.push({ letter: firstletter, data: [] });
+        }
+        list.forEach((item2) => {
+          if (item2.letter == firstletter) {
+            item2.data.push(item.name);
+          }
+        });
+      });
+      citylist.value = list;
+      console.log(citylist);
+    }
+    function getCityId(name) {
+      let id;
+      cityst.value.forEach((item) => {
+        if (name == item.name) {
+          id = item.id;
+        }
+      });
+      console.log("id", id);
+      return id;
+    }
     function bindClick(obj) {
-      eventChannel.emit("acceptDataFromOpenedPage", { name: obj.item.name });
+      let cname = obj.item.name;
+      let cid = getCityId(cname);
+      eventChannel.emit("acceptDataFromOpenedPage", { name: cname, city_id: cid });
       common_vendor.index.navigateBack();
     }
     return (_ctx, _cache) => {
       return {
         a: common_vendor.o(bindClick),
         b: common_vendor.p({
-          options: citylist,
+          options: citylist.value,
           ["show-select"]: false
         })
       };

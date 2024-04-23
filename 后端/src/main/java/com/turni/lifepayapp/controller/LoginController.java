@@ -49,10 +49,11 @@ public class LoginController {
                 userService.insertWithoutId(phone,username,img_url);
                 user = userService.getUserByPhone(phone);
             }
-            String token = JwtUtil.sign(phone, message);
+            String token = JwtUtil.sign(user.getUsername(), user.getPhonenumber());
             if(token == null) {
                 return HTTPrespose.errorMessage(500, "服务器生成token错误");
             }
+            System.out.println(userService.getPhoneByUsername(user.getUsername()));
             Map<String, Object> map = HTTPrespose.successMessage("登录成功");
             map.put("token", token);
             map.put("user", user);

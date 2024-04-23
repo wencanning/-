@@ -17,5 +17,6 @@ public interface UserMapper {
     void insertWithoutId(@Param("phone")String phon, @Param("name") String username, @Param("url")String img_url);
     @Select("select * from user where phonenumber=#{phone}")
     User getUserByPhone(@Param("phone")String phone);
-
+    @Select("select phonenumber from user where username=#{username}")
+    String getPhoneByUsername(@Param("username") String username);
 }

@@ -40,7 +40,6 @@ page {
 		align-items: center;
 		justify-content: space-between;
 		padding: 35rpx 50rpx;
-		
 		font-size: 32rpx;
 		
 		background-color: #fff;

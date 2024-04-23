@@ -2,7 +2,8 @@
 -- 插入到城市表
 insert ignore into city 
 values
-	(1, "武汉", "W");
+	(1, "武汉", "W"),
+    (2, "荆州", "J");
     
 -- 插入到服务表
 insert ignore into service 
@@ -25,10 +26,19 @@ values
     (1, 4),
     (1, 5),
 	(1, 6),
-    (1, 7);
-    
+    (1, 7),
+    (2, 1),
+    (2, 2),
+    (2, 3),
+    (2, 4),
+    (2, 6),
+    (2, 7),
+    (2, 8);
 -- 插入到用户表
-insert  ignore into user(phonenumber, username, img_url)
+insert ignore into user(phonenumber, username, img_url)
 values 
 	("15272304780", "wcn", "/static/icon/头像_男孩.png");
-    
+-- 插入到公司表
+insert ignore into company
+values
+	(1, "武汉燃气有限公司", 3,1);
