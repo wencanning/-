@@ -38,7 +38,13 @@ values
 insert ignore into user(phonenumber, username, img_url)
 values 
 	("15272304780", "wcn", "/static/icon/头像_男孩.png");
+
 -- 插入到公司表
 insert ignore into company
 values
 	(1, "武汉燃气有限公司", 3,1);
+
+-- 插入到账单表
+insert ignore into bill
+values 
+	(1, "爱情麻辣烫", '2024-4-24 19:59', 25);

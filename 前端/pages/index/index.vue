@@ -64,7 +64,7 @@
 	function toPayChoice(servId) {
 		console.log(servId);
 		uni.navigateTo({
-			url:"/pages/detail/pay_choice?"+"servId="+servId+"&cityId="+cityId.value,
+			url:"/pages/detail/pay_choice?"+"servId="+servId+"&cityId="+cityId.value+"&cityName="+cityName.value,
 		})
 	}
 	

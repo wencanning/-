@@ -11,4 +11,6 @@ public interface ServMapper {
     // tested!
     @Select("select * from service where id in (select s_id from cs where c_id = #{id})")
     List<Service> getServByCid(@Param("id") Integer cid);
+    @Select("select * from service where id=#{id}")
+    Service getServById(@Param("id") Integer id);
 }

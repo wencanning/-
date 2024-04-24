@@ -52,3 +52,13 @@ create table `user`(
     img_url varchar(100) not null,
     primary key(`id`)
 );
+
+-- 创建账单表
+drop table if exists bill;
+create table `bill`(
+	id int auto_increment,
+	name varchar(100) not null,
+    date timestamp not null,
+    money int not null,
+    primary key(`id`)
+);

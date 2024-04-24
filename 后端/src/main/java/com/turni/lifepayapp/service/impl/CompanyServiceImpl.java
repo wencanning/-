@@ -12,9 +12,19 @@ public class CompanyServiceImpl implements CompanyService {
     @Autowired
     private CompanyMapper companyMapper;
     @Override
-    public List<Company> getCompany(Integer s_id, Integer c_id) {
+    public List<Company> getCompanyByCSid(Integer s_id, Integer c_id) {
         try {
-            return companyMapper.getCompany(s_id, c_id);
+            return companyMapper.getCompanyByCSid(s_id, c_id);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Company getCompanyById(Integer id) {
+        try {
+            return companyMapper.getCompanyById(id);
         }catch (Exception e) {
             e.printStackTrace();
             return null;

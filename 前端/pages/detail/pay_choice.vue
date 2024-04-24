@@ -2,13 +2,13 @@
 	<view class="container">
 		<view class="nav">
 			<text>缴费项目</text>
-			<text>城市</text>
+			<text>{{cityName}}</text>
 		</view>
 		<view class="company">
 			<view class="com-item" 
 			v-for="(item, index) in company" 
 			:key="index"
-			@click="toPay()"
+			@click="toPay(item.id)"
 			>
 				<text>{{item.name}}</text>
 			</view>
@@ -21,21 +21,26 @@
 	import {requestApi} from '@/api/request.js';
 	import {onLoad, onShow}	from '@dcloudio/uni-app';
 	const company = ref([]);
+	const cityName = ref();
 	const servId = ref(1);
 	const cityId = ref(1);
 	onLoad((option)=> {
 		console.log(option);
 		servId.value = Number(option.servId);
 		cityId.value = Number(option.cityId);
+		cityName.value = option.cityName;
 	});
 	onShow(async()=>{
 		const data = await requestApi("/company",{s_id:servId.value,c_id:cityId.value});
 		company.value = data.company;
 		console.log(company.value);
 	});
-	function toPay() {
+	function toPay(compId) {
+		console.log("compId",compId);
+		console.log("servId", servId.value);
+		console.log("cityId", cityId.value);
 		uni.navigateTo({
-			url: "/pages/detail/pay"
+			url:"/pages/detail/pay?"+"compId="+compId+"&servId="+servId.value+"&cityId="+cityId.value,
 		})
 	}
 </script>
@@ -54,7 +59,6 @@
 		font-size: 30rpx;
 		letter-spacing: 2rpx;
 	}
-	
 	.company {
 		display: flex;
 		flex-direction: column;

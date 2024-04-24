@@ -3,6 +3,19 @@ const common_vendor = require("../../common/vendor.js");
 const _sfc_main = {
   __name: "user",
   setup(__props) {
+    const userName = common_vendor.ref("用户名");
+    const img_url = common_vendor.ref("/static/icon/账单.png");
+    const userId = common_vendor.ref();
+    const phone = common_vendor.ref();
+    common_vendor.onShow(() => {
+      const userInfo = common_vendor.wx$1.getStorageSync("userInfo");
+      if (userInfo) {
+        userName.value = userInfo.user.username;
+        img_url.value = userInfo.user.img_url;
+        userId.value = userInfo.id;
+        phone.value = userInfo.phonenumber;
+      }
+    });
     function toBill() {
       common_vendor.wx$1.navigateTo({
         url: "/pages/index/bill"
@@ -15,8 +28,10 @@ const _sfc_main = {
     }
     return (_ctx, _cache) => {
       return {
-        a: common_vendor.o(toBill),
-        b: common_vendor.o(changeUser)
+        a: img_url.value,
+        b: common_vendor.t(userName.value),
+        c: common_vendor.o(toBill),
+        d: common_vendor.o(changeUser)
       };
     };
   }

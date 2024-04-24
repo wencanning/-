@@ -34,7 +34,17 @@ public class ServController {
             return HTTPrespose.errorMessage(500, "服务器请求城市服务数据失败");
         }
     }
-
-
-
+    @GetMapping("/id")
+    public Map<String,Object> getServById(Integer id) {
+        try {
+            Service service = servService.getServById(id);
+            if(service == null)
+                return HTTPrespose.errorMessage(500, "服务器请求服务失败");
+            Map<String,Object> map = HTTPrespose.successMessage("请求成功");
+            map.put("serv", service);
+            return map;
+        }catch (Exception e) {
+            return HTTPrespose.errorMessage(500, "服务器请求服务失败");
+        }
+    }
 }

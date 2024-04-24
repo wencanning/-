@@ -1,8 +1,8 @@
 <template>
 	<view class="container">
 		<view class="user-card">
-			<image mode="aspectFit" src="../../static/icon/头像_男孩.png"></image>
-			<text>用户名</text>
+			<image mode="aspectFit" :src="img_url"></image>
+			<text>{{userName}}</text>
 		</view>
 		<view class="user-app">
 			<view class="app-item">
@@ -27,7 +27,21 @@
 
 <script setup>
 	import {ref} from 'vue';
-	
+	import {requestApi} from '@/api/request.js';
+	import {onLoad, onShow}	from '@dcloudio/uni-app';
+	const userName = ref('用户名');
+	const img_url = ref('/static/icon/账单.png');
+	const userId = ref();
+	const phone = ref();
+	onShow(()=>{
+		const userInfo = wx.getStorageSync('userInfo');
+		if(userInfo) {
+			userName.value = userInfo.user.username;
+			img_url.value = userInfo.user.img_url;
+			userId.value = userInfo.id;
+			phone.value = userInfo.phonenumber;
+		}
+	})
 	function toBill() {
 		wx.navigateTo({
 			url: "/pages/index/bill"

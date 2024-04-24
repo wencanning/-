@@ -19,16 +19,29 @@ public class CompanyController {
     private CompanyService companyService;
 
     @GetMapping("")
-    Map<String, Object> getCompany(Integer s_id, Integer c_id) {
+    Map<String, Object> getCompanyByCSid(Integer s_id, Integer c_id) {
         if(s_id == null || c_id == null) {
             return HTTPrespose.errorMessage(403, "参数无效");
         }
-        List<Company> list = companyService.getCompany(s_id, c_id);
+        List<Company> list = companyService.getCompanyByCSid(s_id, c_id);
         if(list == null) {
-            return HTTPrespose.errorMessage(500, "服务器请求城市服务失败");
+            return HTTPrespose.errorMessage(500, "服务器请求城市服务bycsid失败");
         }
         Map<String, Object> map = HTTPrespose.successMessage("请求成功");
         map.put("company", list);
+        return map;
+    }
+    @GetMapping("/id")
+    Map<String,Object> getCompanyById(Integer id) {
+        if(id == null) {
+            return HTTPrespose.errorMessage(403, "参数无效");
+        }
+        Company company = companyService.getCompanyById(id);
+        if(company == null) {
+            return HTTPrespose.errorMessage(500, "服务器获取服务byid失败");
+        }
+        Map<String, Object> map = HTTPrespose.successMessage("请求成功");
+        map.put("company", company);
         return map;
     }
 }

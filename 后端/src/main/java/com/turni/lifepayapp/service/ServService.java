@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ServService {
     List<Service> getServByCid(Integer cid);
+    Service getServById(Integer id);
 }

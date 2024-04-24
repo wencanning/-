@@ -32,7 +32,7 @@ const _sfc_main = {
     function toPayChoice(servId) {
       console.log(servId);
       common_vendor.index.navigateTo({
-        url: "/pages/detail/pay_choice?servId=" + servId + "&cityId=" + cityId.value
+        url: "/pages/detail/pay_choice?servId=" + servId + "&cityId=" + cityId.value + "&cityName=" + cityName.value
       });
     }
     return (_ctx, _cache) => {

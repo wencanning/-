@@ -2,11 +2,24 @@
 page {
 		background-color: #f1f3f5;
 }
-text {
-		letter-spacing: 2rpx;
+.card-1 {
+		font-size: 32rpx;
+		margin-bottom: 36rpx;
+}
+.card-2{
+		font-weight: bold;
+		padding-bottom: 26rpx;
+		border-bottom: 4rpx solid #f1f3f5;
+}
+.card-item input {
+		font-weight: 400;
+}
+.card-item {
+		margin-bottom: 56rpx;
 }
 .container {
 		padding: 0 25rpx;
+		letter-spacing: 2rpx;
 }
 .nav {
 		display: flex;
@@ -37,4 +50,14 @@ text {
 		display: flex;
 		flex-direction: column;
 		padding: 40rpx 45rpx;
+}
+.btn-l {
+		width: 100%;
+		font-size: 40rpx;
+		color: white;
+		background-color: #00B0FF;
+		border-radius: 10rpx;
+}
+.btn-send {
+		margin-top: 64rpx;
 }

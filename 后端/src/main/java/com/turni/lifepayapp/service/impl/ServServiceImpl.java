@@ -15,4 +15,14 @@ public class ServServiceImpl implements ServService {
     public List<com.turni.lifepayapp.bean.Service> getServByCid(Integer cid) {
         return servMapper.getServByCid(cid);
     }
+
+    @Override
+    public com.turni.lifepayapp.bean.Service getServById(Integer id) {
+        try {
+            return servMapper.getServById(id);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
