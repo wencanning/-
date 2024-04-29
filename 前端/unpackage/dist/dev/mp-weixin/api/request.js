@@ -87,4 +87,5 @@ function showToast(title) {
     duration: 1500
   });
 }
+exports.getToken = getToken;
 exports.requestApi = requestApi;

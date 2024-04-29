@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <title>Title</title>
+    <title th:text="${billTitle}">用户的账单</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        /* 这里可以添加CSS样式 */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .item-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .title {
+            margin-bottom: 20px;
+        }
+        .item-body {
+            margin-top: 10px;
+        }
+        .item-money {
+            font-weight: bold;
+            margin-left: 25px;
+        }
+        .item-date {
+            margin-bottom: 20px;
+        }
+        .item-name {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title" th:text="${billTitle}">用户的账单</h1>
+    <div class="item-body" th:each="item: ${list}">
+        <h2 class="item-date" th:text="${item.year_month}">2024年4月</h2>
+        <div class="item-card" th:each="item2: ${item.list}">
+            <div>
+                <p class="item-name" th:text="'店名: '+${item2.name}">爱情麻辣烫</p>
+                <span th:text="${item2.year}+'-'">2024年</span>
+                <span th:text="${item2.month}+'-'">4月</span>
+                <span th:text="${item2.day}">25日</span>
+                <span th:text="${item2.hour}+':'"> 17:</span>
+                <span th:text="${item2.minute}">58</span>
+            </div>
+            <span class="item-money" th:text="${item2.money}+'元'">
+                25元
+            </span>
+        </div>
+    </div>
+</body>
+</html>

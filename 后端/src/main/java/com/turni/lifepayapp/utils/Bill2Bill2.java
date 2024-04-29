@@ -11,7 +11,6 @@ import java.util.List;
 public class Bill2Bill2 {
     public static Bill2 converse(Bill bill) {
         Timestamp timestamp = bill.getDate();
-        System.out.println(timestamp);
         LocalDateTime localDateTime = timestamp.toLocalDateTime();
         Integer year = localDateTime.getYear();
         Integer month = localDateTime.getMonthValue();
@@ -19,7 +18,7 @@ public class Bill2Bill2 {
         Integer hour = localDateTime.getHour();
         Integer minute = localDateTime.getMinute();
 
-        Bill2 res = new Bill2(bill.getId(), year, month, day, hour, minute, bill.getName());
+        Bill2 res = new Bill2(bill.getId(), year, month, day, hour, minute, bill.getMoney(), bill.getName());
         return res;
     }
     public static List<Bill2> converse(List<Bill> list) {

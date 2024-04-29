@@ -14,9 +14,9 @@ public class BillServiceImpl implements BillService {
     private BillMapper billMapper;
 
     @Override
-    public List<Bill> getAll() {
+    public List<Bill> getAll(Integer uid) {
         try {
-            return billMapper.getAll();
+            return billMapper.getAll(uid);
         }catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -27,6 +27,16 @@ public class BillServiceImpl implements BillService {
     public Bill getBillById(Integer id) {
         try {
             return billMapper.getBillById(id);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<Bill> getByYM(Integer year, Integer month, Integer uid) {
+        try {
+            return billMapper.getByYM(year, month, uid);
         }catch (Exception e) {
             e.printStackTrace();
             return null;

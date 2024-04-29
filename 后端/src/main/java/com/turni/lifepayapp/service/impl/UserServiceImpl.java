@@ -35,6 +35,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserById(Integer id) {
+        try {
+            return userMapper.getUserById(id);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public List<User> getAll() {
         try {
             return userMapper.getAll();

@@ -14,5 +14,6 @@ public class Bill2 {
     private Integer day;
     private Integer hour;
     private Integer minute;
+    private Integer money;
     private String name;
 }

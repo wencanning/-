@@ -91,4 +91,4 @@ function showToast(title) {
 	})
 }
 
-export{requestApi}
+export{requestApi, getToken}

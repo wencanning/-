@@ -11,6 +11,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class Bill {
     private Integer id;
+    private Integer u_id;
     private String name;
     private Timestamp date;
     private Integer money;
