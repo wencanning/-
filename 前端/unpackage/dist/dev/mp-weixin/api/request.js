@@ -10,6 +10,15 @@ function getToken() {
     return "[object Undefined]";
   }
 }
+function getUid() {
+  const userInfo = common_vendor.wx$1.getStorageSync("userInfo");
+  if (userInfo) {
+    console.log("从缓存中获取uid", userInfo.user.id);
+    return userInfo.user.id;
+  } else {
+    return "[object Undefined]";
+  }
+}
 function requestApi(url, data = {}, method = "GET") {
   console.log("网络请求的参数为:", data);
   return new Promise((resolev, reject) => {
@@ -88,4 +97,5 @@ function showToast(title) {
   });
 }
 exports.getToken = getToken;
+exports.getUid = getUid;
 exports.requestApi = requestApi;

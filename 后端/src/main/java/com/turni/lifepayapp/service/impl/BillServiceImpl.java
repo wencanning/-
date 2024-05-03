@@ -42,4 +42,14 @@ public class BillServiceImpl implements BillService {
             return null;
         }
     }
+
+    @Override
+    public List<Bill> getByY(Integer year, Integer uid) {
+        try {
+            return billMapper.getByY(year, uid);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

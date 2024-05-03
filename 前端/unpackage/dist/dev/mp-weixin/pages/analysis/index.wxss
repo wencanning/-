@@ -1,0 +1,75 @@
+
+.top {
+		background-color: #00B0FF;
+		font-size: 40rpx;
+}
+.body {
+		border-top-right-radius: 100rpx;
+		border-top-left-radius: 100rpx;
+		padding: 20rpx 40rpx;
+}
+.top-bar {
+		color: #dee2e6;
+		display: flex;
+		justify-content: space-around;
+		margin: 10rpx 90rpx;
+		padding: 20rpx 0;
+}
+.bar-item {
+		margin-top: 20rpx;
+		padding-bottom: 20rpx;
+}
+.selected {
+		color: white;
+		border-bottom: 5rpx solid white;
+}
+.top-2 {
+		color: white;
+		display: flex;
+		justify-content: space-between;
+		padding: 20rpx 40rpx;
+		margin-bottom: 12rpx;
+}
+.top-3 {
+		padding: 10rpx 40rpx;
+		color: #dee2e6;
+		font-size: 32rpx;
+}
+.top-4 {
+		color: white;
+		font-size: 60rpx;
+		padding: 10rpx 28rpx;
+		margin-top: 20rpx;
+		padding-bottom: 60rpx;
+}
+.top-2 image {
+		width: 45rpx;
+		height: 45rpx;
+}
+.top-2 picker {
+		margin-right: 10rpx;
+}
+.top-2-1 {
+		display: flex;
+}
+.body-2 {
+	  width: 100%;
+	  height: 400rpx;
+}
+.body-1 {
+}
+.rank-titke {
+}
+.rank-item {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 30rpx;
+		margin-top: 40rpx;
+}
+.rank-item-money {
+		font-weight: bold;
+}
+.rank-item-name {
+		margin-left: 60rpx;
+}

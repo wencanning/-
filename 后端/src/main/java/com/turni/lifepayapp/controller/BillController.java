@@ -23,10 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -77,6 +74,60 @@ public class BillController {
         map.put("bill", list2);
         return map;
     }
+    @GetMapping("/chart/month")
+    Map<String, Object> getCateByMonth(String dateStr, Integer uid) {
+        if(dateStr == null || uid == null)
+            return HTTPrespose.errorMessage(403, "参数无效");
+        Integer year = getYear(dateStr);
+        Integer month = getMonth(dateStr);
+        List<Double> list3 = new LinkedList<>();
+        Double mmoney = 0.0;
+        Integer billnum = 0;
+        for(int i = 1; i <= 12; i++) {
+            Double sum = 0.0;
+            List<Bill> list1 = billService.getByYM(year, i, uid);
+            List<Bill2> list2 = Bill2Bill2.converse(list1);
+            for(Bill2 bill2 : list2) {
+                sum += bill2.getMoney();
+            }
+            if(i == month) {
+                mmoney = sum;
+                billnum = list2.size();
+            }
+            list3.add(sum);
+        }
+        Map<String, Object> map = HTTPrespose.successMessage("请求成功");
+        map.put("moneylist", list3);
+        map.put("billnum", billnum);
+        map.put("mmoney", mmoney);
+        return map;
+    }
+    @GetMapping("/chart/year")
+    Map<String, Object> getCateByYear(Integer dateStr, Integer uid) {
+        if(dateStr == null || uid == null)
+            return HTTPrespose.errorMessage(403, "参数无效");
+        Integer year = dateStr;
+        Integer billnum = 0;
+        Double mmoney = 0.0;
+        List<Double> list = new LinkedList<>();
+        for(int i = year-4; i <= year+7; i++) {
+            List<Bill> bills = billService.getByY(i, uid);
+            Double sum = 0.0;
+            for(Bill bill : bills) {
+                sum += bill.getMoney();
+            }
+            if(i == year) {
+                billnum = bills.size();
+                mmoney = sum;
+            }
+            list.add(sum);
+        }
+        Map<String,Object> map = HTTPrespose.successMessage("请求成功");
+        map.put("billnum", billnum);
+        map.put("mmoney", mmoney);
+        map.put("moneylist", list);
+        return map;
+    }
     @GetMapping(value = "/getpdf", produces = MediaType.APPLICATION_PDF_VALUE )
     public void generateReport(HttpServletResponse response ,@RequestParam("uid")  Integer uid) throws IOException {
         if(uid == 0) {
@@ -93,6 +144,22 @@ public class BillController {
         response.setHeader("Content-Disposition", "attachment; filename=\"" + "bill" + ".pdf\"");
         pdfService.generatePdf(response.getOutputStream(), data);
     }
+    @GetMapping("/rank10")
+    public Map<String, Object> getRank10(String dateStr, Integer uid) {
+        Integer year = getYear(dateStr);
+        Integer month = getMonth(dateStr);
+        List<Bill> list1 = billService.getByYM(year, month, uid);
+        Collections.sort(list1, new Comparator<Bill>() {
+            @Override
+            public int compare(Bill bill1, Bill bill2) {
+                return bill2.getMoney().compareTo(bill1.getMoney()); // 降序排序
+            }
+        });
+        int end = Math.min(10, list1.size());
+        Map<String, Object> map = HTTPrespose.successMessage("请求成功");
+        map.put("ranklist", list1.subList(0, end));
+        return map;
+    }
 
     private List<BillItem> billGroupByMonth(List<Bill> list) {
         List<Bill2> list2 = Bill2Bill2.converse(list);
@@ -107,5 +174,30 @@ public class BillController {
         }
         System.out.println(res);
         return res;
+    }
+
+    private Double getTotalMoneyByMonth(Integer year, Integer month, Integer uid) {
+        List<Bill> list = billService.getByYM(year, month, uid);
+        Double sum = 0.0;
+        for(int i = 0; i < list.size(); i++) {
+            sum += list.get(i).getMoney();
+        }
+        return sum;
+    }
+
+    private Integer getYear(String dateStr) {
+        dateStr = dateStr + "-01";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(dateStr, formatter);
+        Integer year = date.getYear();
+        return year;
+    }
+
+    private Integer getMonth(String dateStr) {
+        dateStr = dateStr + "-01";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(dateStr, formatter);
+        Integer month = date.getMonthValue();
+        return month;
     }
 }

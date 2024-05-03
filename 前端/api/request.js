@@ -7,7 +7,17 @@ function getToken() {
 		console.log('从缓存中获取token', userInfo.token);
 		return userInfo.token;
 	}else {
-		return "[object Undefined]"
+		return "[object Undefined]";
+	}
+}
+
+function getUid() {
+	const userInfo = wx.getStorageSync('userInfo');
+	if(userInfo) {
+		console.log('从缓存中获取uid', userInfo.user.id);
+		return userInfo.user.id;
+	}else {
+		return "[object Undefined]";
 	}
 }
 
@@ -91,4 +101,4 @@ function showToast(title) {
 	})
 }
 
-export{requestApi, getToken}
+export{requestApi, getToken, getUid}

@@ -8,4 +8,5 @@ public interface BillService {
     List<Bill> getAll(Integer uid);
     Bill getBillById(Integer id);
     List<Bill> getByYM(Integer year, Integer month, Integer uid);
+    List<Bill> getByY(Integer year, Integer uid);
 }

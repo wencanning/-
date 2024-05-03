@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/analysis/index",
     "pages/index/user",
     "pages/index/index",
     "pages/login/index",

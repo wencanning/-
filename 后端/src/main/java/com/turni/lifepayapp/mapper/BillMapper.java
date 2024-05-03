@@ -14,4 +14,6 @@ public interface BillMapper {
     Bill getBillById(Integer id);
     @Select("select * from bill where YEAR(date)=#{year} and MONTH(date)=#{month} and u_id=#{uid}")
     List<Bill> getByYM(Integer year, Integer month, Integer uid);
+    @Select("select * from bill where YEAR(date)=#{year} and u_id=#{uid}")
+    List<Bill> getByY(Integer year, Integer uid);
 }
