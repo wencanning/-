@@ -6,6 +6,7 @@ import com.turni.lifepayapp.service.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -50,6 +51,15 @@ public class BillServiceImpl implements BillService {
         }catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    @Override
+    public void insert(Integer uid, Integer compid, Timestamp date, Double money) {
+        try {
+            billMapper.insert(uid, compid, date, money);
+        }catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

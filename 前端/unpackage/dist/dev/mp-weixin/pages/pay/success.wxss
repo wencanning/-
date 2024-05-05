@@ -1,0 +1,29 @@
+
+.container {
+		padding: 0rpx 20rpx
+}
+.tocenter {
+		display: flex;
+		justify-content: space-around;
+}
+.success-img {
+		margin-top: 140rpx;
+		margin-bottom: 50rpx;
+		width: 220rpx;
+		height: 220rpx;
+}
+.messg-1 {
+		font-size: 44rpx;
+}
+.btn-pay {
+		margin-top: 90rpx;
+}
+.btn-l {
+		margin-top: 550rpx;
+		width: 40%;
+		font-size: 36rpx;
+		color: #00B0FF;
+		background-color: white;
+		border: 2rpx solid #00B0FF;
+	/* 	border-radius: 60rpx; */
+}

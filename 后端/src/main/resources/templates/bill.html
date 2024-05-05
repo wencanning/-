@@ -41,7 +41,7 @@
         <h2 class="item-date" th:text="${item.year_month}">2024年4月</h2>
         <div class="item-card" th:each="item2: ${item.list}">
             <div>
-                <p class="item-name" th:text="'店名: '+${item2.name}">爱情麻辣烫</p>
+                <p class="item-name" th:text="'单位: '+${item2.name}">爱情麻辣烫</p>
                 <span th:text="${item2.year}+'-'">2024年</span>
                 <span th:text="${item2.month}+'-'">4月</span>
                 <span th:text="${item2.day}">25日</span>

@@ -1,8 +1,10 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/pay/success",
+    "pages/pay/index",
     "pages/analysis/index",
     "pages/index/user",
-    "pages/index/index",
     "pages/login/index",
     "pages/login/login",
     "pages/city_choice/city",

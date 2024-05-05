@@ -1,7 +1,32 @@
 {
   "pages": [
-    //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-    {
+    // pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+    // {
+    // 	"path": "pages/pay/success",
+    // 	"style": {
+    // 	  "navigationBarTitleText": "缴费结果"
+    // 	}
+    // },
+	{
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "生活缴费",
+        "navigationBarTextStyle": "black"
+      }
+    },
+	{
+		"path": "pages/pay/success",
+		"style": {
+		  "navigationBarTitleText": "缴费结果"
+		}
+	},
+	{
+    	"path": "pages/pay/index",
+    	"style": {
+    	  "navigationBarTitleText": "账单详情"
+    	}
+    },
+	{
 		"path": "pages/analysis/index",
 		"style": {
 		  "navigationBarTitleText": "统计"
@@ -11,13 +36,6 @@
       "path": "pages/index/user",
       "style": {
         "navigationBarTitleText": "我的"
-      }
-    },
-	{
-      "path": "pages/index/index",
-      "style": {
-        "navigationBarTitleText": "生活缴费",
-        "navigationBarTextStyle": "black"
       }
     },
 	{

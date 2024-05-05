@@ -1,5 +1,11 @@
 const baseUrl = 'http://localhost:8080';
 
+function navigateTo(url) {
+	wx.navigateTo({
+		url:"/pages"+url
+	});
+}
+
 //获取token
 function getToken() {
 	const userInfo = wx.getStorageSync('userInfo');
@@ -101,4 +107,4 @@ function showToast(title) {
 	})
 }
 
-export{requestApi, getToken, getUid}
+export{requestApi, getToken, getUid, navigateTo, showToast}

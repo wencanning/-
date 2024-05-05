@@ -49,13 +49,14 @@ const _sfc_main = {
     return (_ctx, _cache) => {
       return {
         a: common_vendor.o(getbill),
-        b: common_vendor.t(currentDate.value),
-        c: startDate.value,
-        d: endDate.value,
-        e: currentDate.value,
-        f: common_vendor.o(dateChange),
-        g: common_vendor.t(_ctx.money),
-        h: common_vendor.f(billdata.value, (item, index, i0) => {
+        b: common_vendor.o(($event) => common_vendor.unref(api_request.navigateTo)("/analysis/index")),
+        c: common_vendor.t(currentDate.value),
+        d: startDate.value,
+        e: endDate.value,
+        f: currentDate.value,
+        g: common_vendor.o(dateChange),
+        h: common_vendor.t(_ctx.money),
+        i: common_vendor.f(billdata.value, (item, index, i0) => {
           return {
             a: common_vendor.t(item.name),
             b: common_vendor.t(item.year),

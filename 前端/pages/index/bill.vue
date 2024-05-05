@@ -1,7 +1,7 @@
 <template>
 	<view class="tobar" style="border-bottom: 1rpx solid #dee2e6;" >
 		<view class="export" @click="getbill">账单导出</view>
-		<view class="tobar-1">
+		<view class="tobar-1" @click="navigateTo('/analysis/index')">
 			<text>统计</text>
 			<image src="/static/icon/right_arrow.png"></image>
 		</view>
@@ -37,7 +37,7 @@
 
 <script setup>
 	import {ref} from 'vue';
-	import {requestApi,getToken} from '@/api/request.js';
+	import {requestApi,getToken,navigateTo} from '@/api/request.js';
 	import {onShow} from '@dcloudio/uni-app';
 	const startDate = ref("2023-1");
 	const endDate = ref("2050-1");

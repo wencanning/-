@@ -26,7 +26,7 @@
 		</view>
 		<button
 		 class="btn-l btn-send"
-		 @click="btn-send"
+		 @click="btnToPay"
 		 >
 			查询并缴费
 		</button>
@@ -35,7 +35,7 @@
 
 <script setup>
 	import {ref} from 'vue';
-	import {requestApi} from '@/api/request.js';
+	import {requestApi,navigateTo,showToast} from '@/api/request.js';
 	import {onLoad, onShow}	from '@dcloudio/uni-app';
 	const servId = ref(1);
 	const cityId = ref(1);
@@ -60,6 +60,16 @@
 	});
 	function onInputOfMess(e) {
 		household_number = e.detail;
+	}
+	async function btnToPay() {
+		const data = await requestApi("/bill/check",{usernum:household_number.value});
+		const flag = data.flag;
+		if(flag === true) {
+			navigateTo('/pay/index?'+'servId='+servId.value+ '&compId='+compId.value+'&household_number='+household_number.value);
+		}
+		else {
+			showToast("请输入正确的户号");
+		}
 	}
 </script>
 

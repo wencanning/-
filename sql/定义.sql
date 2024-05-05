@@ -57,8 +57,11 @@ create table `user`(
 drop table if exists bill;
 create table `bill`(
 	id int auto_increment,
-	name varchar(100) not null,
+    u_id int not null,
+	comp_id int not null,
     date timestamp not null,
-    money int not null,
-    primary key(`id`)
+    money double not null,
+    primary key(`id`),
+	foreign key(`comp_id`) references company(`id`),
+    foreign key(`u_id`) references user(`id`)
 );

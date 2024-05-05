@@ -1,6 +1,11 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
 const baseUrl = "http://localhost:8080";
+function navigateTo(url) {
+  common_vendor.wx$1.navigateTo({
+    url: "/pages" + url
+  });
+}
 function getToken() {
   const userInfo = common_vendor.wx$1.getStorageSync("userInfo");
   if (userInfo) {
@@ -98,4 +103,6 @@ function showToast(title) {
 }
 exports.getToken = getToken;
 exports.getUid = getUid;
+exports.navigateTo = navigateTo;
 exports.requestApi = requestApi;
+exports.showToast = showToast;

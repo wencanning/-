@@ -69,6 +69,6 @@
 	}
 	
 	.indexed-list {
-		/* margin-top: 100px; */
+		font-size: 48rpx;
 	}
 </style>

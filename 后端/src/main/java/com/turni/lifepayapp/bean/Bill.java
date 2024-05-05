@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 public class Bill {
     private Integer id;
     private Integer u_id;
-    private String name;
+    private Integer comp_id;
     private Timestamp date;
-    private Integer money;
+    private Double money;
 }

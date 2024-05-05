@@ -1,10 +1,8 @@
 package com.turni.lifepayapp.controller;
 
-import com.turni.lifepayapp.bean.Bill;
-import com.turni.lifepayapp.bean.Bill2;
-import com.turni.lifepayapp.bean.BillItem;
-import com.turni.lifepayapp.bean.User;
+import com.turni.lifepayapp.bean.*;
 import com.turni.lifepayapp.service.BillService;
+import com.turni.lifepayapp.service.CompanyService;
 import com.turni.lifepayapp.service.PdfService;
 import com.turni.lifepayapp.service.UserService;
 import com.turni.lifepayapp.utils.Bill2Bill2;
@@ -14,13 +12,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -35,6 +31,8 @@ public class BillController {
     private UserService userService;
     @Autowired
     private PdfService pdfService;
+    @Autowired
+    private CompanyService companyService;
     @GetMapping("")
     Map<String, Object> getAll(Integer id) {
         List<Bill> list = billService.getAll(id);
@@ -42,7 +40,7 @@ public class BillController {
             return HTTPrespose.errorMessage(500, "服务器请求所有账单错误");
         System.out.println(list);
         Map<String, Object> map = HTTPrespose.successMessage("请求成功");
-        List<Bill2> list2 = Bill2Bill2.converse(list);
+        List<Bill2> list2 = Bill2Bill2.converse(list, companyService);
         map.put("bill", list2);
         return map;
     }
@@ -52,7 +50,7 @@ public class BillController {
         if(bill == null)
             return HTTPrespose.errorMessage(500, "服务器请求账单错误");
         Map<String, Object> map = HTTPrespose.successMessage("请求成功");
-        Bill2 bill2 = Bill2Bill2.converse(bill);
+        Bill2 bill2 = Bill2Bill2.converse(bill, companyService);
         map.put("bill", bill2);
         return map;
     }
@@ -70,7 +68,7 @@ public class BillController {
         if(list == null)
             return HTTPrespose.errorMessage(500, "服务器请求账单by date错误");
         Map<String, Object> map = HTTPrespose.successMessage("请求成功");
-        List<Bill2> list2 = Bill2Bill2.converse(list);
+        List<Bill2> list2 = Bill2Bill2.converse(list, companyService);
         map.put("bill", list2);
         return map;
     }
@@ -86,7 +84,7 @@ public class BillController {
         for(int i = 1; i <= 12; i++) {
             Double sum = 0.0;
             List<Bill> list1 = billService.getByYM(year, i, uid);
-            List<Bill2> list2 = Bill2Bill2.converse(list1);
+            List<Bill2> list2 = Bill2Bill2.converse(list1, companyService);
             for(Bill2 bill2 : list2) {
                 sum += bill2.getMoney();
             }
@@ -156,13 +154,41 @@ public class BillController {
             }
         });
         int end = Math.min(10, list1.size());
+        List<Bill2> list2 = Bill2Bill2.converse(list1, companyService);
         Map<String, Object> map = HTTPrespose.successMessage("请求成功");
-        map.put("ranklist", list1.subList(0, end));
+        map.put("ranklist", list2.subList(0, end));
+        return map;
+    }
+    @GetMapping("/check")
+    public Map<String, Object> checkUserNum(String usernum) {
+        Map<String, Object> map = HTTPrespose.successMessage("请求成功");
+        if(usernum.equals("202013407479")) {
+            map.put("flag", true);
+        }else {
+            map.put("flag", false);
+        }
+        return map;
+    }
+
+    @GetMapping("/getpay")
+    public Map<String, Object> getPayDetail(Integer uid, Integer comid) {
+        Map<String, Object> map = HTTPrespose.successMessage("请求成功");
+        Pay pay = new Pay(getRandomDouble(), 0.0, "文灿宁");
+        map.put("payItem", pay);
+        return map;
+    }
+
+    @PostMapping("/pay")
+    public Map<String, Object> payBill(@RequestBody PayRequest payRequest) {
+        Map<String, Object> map = HTTPrespose.successMessage("请求成功");
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        billService.insert(payRequest.getUid(), payRequest.getCompid(), timestamp, payRequest.getPaynum());
+        map.put("flag", true);
         return map;
     }
 
     private List<BillItem> billGroupByMonth(List<Bill> list) {
-        List<Bill2> list2 = Bill2Bill2.converse(list);
+        List<Bill2> list2 = Bill2Bill2.converse(list, companyService);
         Map<String, List<Bill2>> map = list2.stream().collect
                 (Collectors.groupingBy(bill->bill.getYear()+"-"+String.format("%02d",bill.getMonth())));
         List<BillItem> res = new LinkedList<>();
@@ -199,5 +225,11 @@ public class BillController {
         LocalDate date = LocalDate.parse(dateStr, formatter);
         Integer month = date.getMonthValue();
         return month;
+    }
+
+    private Double getRandomDouble() {
+        Random random = new Random();
+        Double randomDouble = random.nextDouble() * 200;
+        return randomDouble;
     }
 }

@@ -6852,6 +6852,25 @@ const onShow = /* @__PURE__ */ createHook(ON_SHOW);
 const onLoad = /* @__PURE__ */ createHook(ON_LOAD);
 const pages = [
   {
+    path: "pages/index/index",
+    style: {
+      navigationBarTitleText: "生活缴费",
+      navigationBarTextStyle: "black"
+    }
+  },
+  {
+    path: "pages/pay/success",
+    style: {
+      navigationBarTitleText: "缴费结果"
+    }
+  },
+  {
+    path: "pages/pay/index",
+    style: {
+      navigationBarTitleText: "账单详情"
+    }
+  },
+  {
     path: "pages/analysis/index",
     style: {
       navigationBarTitleText: "统计"
@@ -6861,13 +6880,6 @@ const pages = [
     path: "pages/index/user",
     style: {
       navigationBarTitleText: "我的"
-    }
-  },
-  {
-    path: "pages/index/index",
-    style: {
-      navigationBarTitleText: "生活缴费",
-      navigationBarTextStyle: "black"
     }
   },
   {
@@ -9643,4 +9655,5 @@ exports.ref = ref;
 exports.resolveComponent = resolveComponent;
 exports.s = s$1;
 exports.t = t$1;
+exports.unref = unref;
 exports.wx$1 = wx$1;

@@ -1,0 +1,1 @@
+<view class="container"><view class="tocenter"><image class="success-img" mode="aspectFit" src="/static/icon/成功.png"></image></view><view class="tocenter"><text class="messg-1"> 缴费成功 </text></view><button class="btn-l" bindtap="{{a}}"> 完成 </button></view>
